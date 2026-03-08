@@ -1,0 +1,26 @@
+# Environment and IDE files
+.env
+.idea/
+.vscode/
+
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Node modules
+node_modules/
+
+# Generated Data files (We don't want to commit personal scraped data!)
+movies.json
+movies_with_coords.json
+movies_with_locations.json
+douban_movies.json
+frontend/public/movies.json
+frontend/src/data/movies.json
+location_cache.json
+*.output
+
+# OS generated files
+.DS_Store
+Thumbs.db
