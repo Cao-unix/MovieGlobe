@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ report_title }}</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="https://unpkg.com/globe.gl"></script>
+</head>
+<body>
+  <main class="report-shell">
+    <section class="report-topbar">
+      <div>
+        <a class="text-link" href="/">Back to search</a>
+        <p class="eyebrow">Saved report</p>
+        <h1 id="report-title">{{ report_title }}</h1>
+        <p class="report-subtitle">A saved public globe you can reopen, share, and download.</p>
+      </div>
+      <div class="topbar-actions">
+        <div class="pill-group">
+        <span class="pill" id="movie-count-pill"></span>
+        <span class="pill" id="point-count-pill"></span>
+        </div>
+        <div class="action-group">
+          <button id="copy-link-btn" class="ghost-button" type="button">Copy Link</button>
+          <button id="download-json-btn" class="ghost-button" type="button">Download JSON</button>
+          <button id="toggle-sidebar-btn" class="ghost-button" type="button">Focus Globe</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats-grid">
+      <article class="stat-card">
+        <span>Average Douban</span>
+        <strong id="avg-douban"></strong>
+      </article>
+      <article class="stat-card">
+        <span>Average IMDb</span>
+        <strong id="avg-imdb"></strong>
+      </article>
+      <article class="stat-card">
+        <span>Top Countries</span>
+        <strong id="top-countries"></strong>
+      </article>
+      <article class="stat-card">
+        <span>Top Locations</span>
+        <strong id="top-locations"></strong>
+      </article>
+    </section>
+
+    <section class="globe-layout">
+      <div class="globe-panel">
+        <div class="globe-toolbar">
+          <button id="zoom-in-btn" class="icon-button" type="button" aria-label="Zoom in">+</button>
+          <button id="zoom-out-btn" class="icon-button" type="button" aria-label="Zoom out">-</button>
+        </div>
+        <div class="poster-size-panel">
+          <label for="poster-size-slider">Poster Size <span id="poster-size-value">100%</span></label>
+          <input id="poster-size-slider" type="range" min="70" max="180" value="100">
+        </div>
+        <div id="globe-view" class="globe-view"></div>
+        <div id="selected-card" class="selected-card hidden"></div>
+      </div>
+      <aside id="list-panel" class="list-panel">
+        <div class="list-head">
+          <h2>Movies</h2>
+          <p id="list-count" class="list-count"></p>
+          <input id="search-input" class="search-input" type="text" placeholder="Search title or location">
+        </div>
+        <div id="movie-list" class="movie-list"></div>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    window.__REPORT__ = {{ report_json|safe }};
+  </script>
+  <script src="/static/report.js"></script>
+</body>
+</html>

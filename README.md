@@ -52,15 +52,16 @@
 
 ---
 
-# 🚀 Quick Start
+# 🚀 Project Modes
 
-这个项目分为两个部分：
+这个项目现在有两种使用方式：
 
-1️⃣ **Scraper (Python)**
-负责自动抓取你的观影记录并整理数据
+1️⃣ **Classic Local Pipeline**
+用 Python + React 在本地为你自己的豆瓣账号生成电影地球。
 
-2️⃣ **Frontend (React)**
-把这些数据渲染成一个可以旋转的 3D 地球
+2️⃣ **Public Web App**
+在 `public_app/` 下提供一个可公开访问的网页服务。
+用户输入豆瓣 ID 后，服务端会使用配置好的 Cookie 抓取数据、保存报告，并生成一个可重复访问的分享页面。
 
 ---
 
@@ -82,7 +83,7 @@
 
 ---
 
-# 2️⃣ 一键抓取数据
+# 2️⃣ Classic Local Pipeline
 
 只需要确保安装了 **Python 3.8+**，然后运行：
 
@@ -110,7 +111,7 @@ python start.py
 
 ---
 
-# 3️⃣ 打开你的电影地球
+# 3️⃣ 打开本地电影地球
 
 进入前端目录：
 
@@ -130,9 +131,50 @@ npm run dev
 
 ---
 
+# 4️⃣ Public Web App
+
+`public_app/` 是当前项目的新入口，适合做成网页服务。
+
+### 已实现功能
+
+* 输入豆瓣 ID 或豆瓣主页链接
+* 服务端使用配置好的 Douban Cookie 抓取公开收藏页和电影详情页
+* 抓取 Douban 聚合评分、TMDB 海报、IMDb 精确拍摄地
+* 自动保存报告到 SQLite
+* 同一个报告可重复打开
+* 报告页支持：
+  * 3D 地球展示所有电影海报
+  * 点击海报后显示电影信息
+  * 海报大小滑块
+  * 地球缩放按钮
+  * 复制链接
+  * 下载 JSON
+  * 移动端访问
+
+### 启动方式
+
+进入 `public_app` 目录后运行：
+
+```bash
+python start.py
+```
+
+默认地址：
+
+* 本机：`http://127.0.0.1:8000`
+* 局域网设备：`http://<你的电脑IP>:8000`
+
+如果要让手机访问，请确保：
+
+* 服务正在运行
+* 手机和电脑在同一网络
+* Windows 防火墙允许 `8000` 端口
+
+---
+
 # 🛠 Tech Stack
 
-**Backend**
+**Classic Backend**
 
 * Python
 * BeautifulSoup
@@ -143,11 +185,19 @@ npm run dev
 * IMDb Filming Locations
 * OpenStreetMap Nominatim
 
-**Frontend**
+**Classic Frontend**
 
 * React
 * Globe.gl (Three.js)
 * Vite
+
+**Public App**
+
+* FastAPI
+* Jinja2 Templates
+* SQLite
+* Globe.gl (Three.js)
+* Vanilla JavaScript
 
 ---
 

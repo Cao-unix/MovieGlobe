@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Globe Public</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <main class="landing-shell">
+    <section class="hero-card">
+      <p class="eyebrow">Public Movie Globe</p>
+      <h1>Turn any Douban profile into a shareable movie globe.</h1>
+      <p class="hero-copy">
+        Enter a Douban ID or profile URL. The server fetches the watch history,
+        maps filming locations, saves the result, and gives you a public report page.
+      </p>
+      <p class="status-message">Reports are no longer listed on the homepage. They are only reachable by direct link after generation.</p>
+
+      <form id="report-form" class="submit-form">
+        <label for="douban-id">Douban ID or profile URL</label>
+        <div class="form-row">
+          <input
+            id="douban-id"
+            name="douban-id"
+            type="text"
+            placeholder="e.g. 1000001 or https://www.douban.com/people/1000001/"
+            autocomplete="off"
+          >
+          <button type="submit">Build Report</button>
+        </div>
+      </form>
+
+      <section id="status-panel" class="status-panel hidden" aria-live="polite">
+        <div class="status-head">
+          <div>
+            <p class="eyebrow">Current job</p>
+            <h2 id="status-title">Starting...</h2>
+          </div>
+          <span id="status-badge" class="status-badge">Queued</span>
+        </div>
+        <div class="progress-track">
+          <div id="progress-bar" class="progress-bar"></div>
+        </div>
+        <p id="status-message" class="status-message"></p>
+        <p id="status-error" class="status-error hidden"></p>
+        <a id="report-link" class="text-link hidden" href="#">Open saved report</a>
+      </section>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
